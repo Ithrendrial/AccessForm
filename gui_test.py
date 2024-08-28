@@ -93,15 +93,15 @@ class CustomQPushButton(QPushButton):
             }
         """)
 
-        # Create and apply the shadow effect
+        # Button Drop Shadow
         shadow = QGraphicsDropShadowEffect(self)
         shadow.setBlurRadius(5)
         shadow.setXOffset(2)
         shadow.setYOffset(2)
-        shadow.setColor(QColor(0, 0, 0, 50))  # 50 is the alpha value for 20% opacity
+        shadow.setColor(QColor(0, 0, 0, 50))
         self.setGraphicsEffect(shadow)
 
-        font = QFont('Helvetica', 10)  # Choose your desired font and size
+        font = QFont('Helvetica', 10)
         font.setLetterSpacing(QFont.SpacingType.AbsoluteSpacing, 2)  # Set letter spacing (2 pixels)
         self.setFont(font)
 
@@ -120,6 +120,7 @@ class MainWindow(QMainWindow):
 
         # Main layout
         main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(20, 20, 20, 20)
 
         # Title label
         title_label = QLabel("Card Access Request")
@@ -251,14 +252,10 @@ class MainWindow(QMainWindow):
         # Add grid layout to main layout
         main_layout.addLayout(grid_layout)
 
-        button_container = QWidget()
-        button_layout = QHBoxLayout(button_container)
+        # Submit Button
         button = CustomQPushButton("SUBMIT")
         button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        button_layout.addWidget(button)
-
-        # Add the button container to the grid layout, spanning all columns
-        grid_layout.addWidget(button_container, grid_layout.rowCount(), 0, 1, grid_layout.columnCount())
+        grid_layout.addWidget(button, grid_layout.rowCount(), 0, 1, grid_layout.columnCount())
 
         # Set up the central widget
         central_widget = QWidget()
